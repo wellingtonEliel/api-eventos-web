@@ -2,60 +2,75 @@
   <v-container fluid class="pa-0">
     <app-topbar @toggle-drawer="toggleDrawer" />
 
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      clipped
-    >
+    <v-navigation-drawer v-model="drawer" app clipped>
       <AppSidebar :drawer="drawer" @update:drawer="drawer = $event" />
     </v-navigation-drawer>
 
     <v-main>
-      <v-container fluid class="d-flex justify-center align-center" style="min-height: calc(100vh - 64px);">
-        <v-col cols="12" sm="8" md="6" lg="4">
-          <v-form @submit.prevent="registrar" class="register-form">
-            <h2 class="form-title">Registrar-se no Evento 1</h2>
+      <v-container fluid>
+        <v-row
+          class="fill-height"
+          align="center"
+          justify="center"
+        >
+          <v-col cols="12" sm="8" md="6" lg="4">
+            <v-card class="pa-5" elevation="2">
+              <v-card-title class="text-h6 justify-center" style="font-family: 'Poppins', sans-serif;">
+                Registrar-se no Evento 1
+              </v-card-title>
 
-            <v-text-field
-              label="Nome completo"
-              v-model="nome"
-              variant="underlined"
-              density="comfortable"
-              required
-            />
+              <v-card-text>
+                <v-form>
+                  <v-row class="mb-3" align="center">
+                    <v-col cols="4" class="text-right">
+                      <label for="nome">Nome completo:</label>
+                    </v-col>
+                    <v-col cols="8">
+                      <v-text-field id="nome" v-model="nome" dense outlined hide-details></v-text-field>
+                    </v-col>
+                  </v-row>
 
-            <v-text-field
-              label="E-mail"
-              v-model="email"
-              variant="underlined"
-              density="comfortable"
-              required
-            />
+                  <v-row class="mb-3" align="center">
+                    <v-col cols="4" class="text-right">
+                      <label for="email">E-mail:</label>
+                    </v-col>
+                    <v-col cols="8">
+                      <v-text-field id="email" v-model="email" dense outlined hide-details></v-text-field>
+                    </v-col>
+                  </v-row>
 
-            <v-text-field
-              label="Telefone"
-              v-model="telefone"
-              variant="underlined"
-              density="comfortable"
-              required
-            />
+                  <v-row class="mb-3" align="center">
+                    <v-col cols="4" class="text-right">
+                      <label for="telefone">Telefone:</label>
+                    </v-col>
+                    <v-col cols="8">
+                      <v-text-field id="telefone" v-model="telefone" dense outlined hide-details></v-text-field>
+                    </v-col>
+                  </v-row>
 
-            <v-checkbox
-              v-model="confirmado"
-              label="Confirmo minha participação no evento"
-              density="comfortable"
-            />
+                  <v-row align="center" class="mb-4">
+                    <v-col cols="12">
+                      <v-checkbox
+                        v-model="confirmado"
+                        label="Confirmo minha participação no evento"
+                        color="#005324"
+                      ></v-checkbox>
+                    </v-col>
+                  </v-row>
 
-            <v-btn
-  type="submit"
-  class="register-btn"
-  style="background-color: #005324; color: white;"
->
-  Registrar-se
-</v-btn>
-
-          </v-form>
-        </v-col>
+                  <v-btn
+                    style="background-color: #005324; font-family: 'Poppins', sans-serif;"
+                    dark
+                    block
+                    @click="registrar"
+                  >
+                    Registrar-se
+                  </v-btn>
+                </v-form>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </v-container>
@@ -96,32 +111,16 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-.register-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
+.v-card {
+  border-radius: 16px;
+  width: 100%;
 }
 
-.form-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-.register-btn {
-  background-color: #005324 !important;
-  color: white !important;
+.v-btn {
   text-transform: none;
-  width: 150px;
-  align-self: center;
 }
 
-.register-btn:hover {
-  background-color: #00401f !important; /* Tom mais escuro no hover */
+.v-card-title {
+  font-weight: 600;
 }
 </style>
